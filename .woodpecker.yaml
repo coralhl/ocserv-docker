@@ -1,0 +1,23 @@
+steps:
+  build:
+    image: woodpeckerci/plugin-docker-buildx:4.0.0
+    environment:
+      - HTTPS_PROXY=${PROXY_ADDRESS}
+      - HTTP_PROXY=${PROXY_ADDRESS}
+    settings:
+      username:
+        from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password
+      repo: coralhl/ocserv
+      # passthrough proxy config to the build process and Dockerfile CMDs itself.
+      build_args:
+        - HTTPS_PROXY=${PROXY_ADDRESS}
+        - HTTP_PROXY=${PROXY_ADDRESS}
+      # add driver-opt http config to tell buildkit + buildx to resolve external checksums through a proxy.
+      buildkit_driveropt:
+        - env.HTTPS_PROXY=${PROXY_ADDRESS}
+        - env.HTTP_PROXY=${PROXY_ADDRESS}
+      tags:
+        - latest
+        - 1.3.0
