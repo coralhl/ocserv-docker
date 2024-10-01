@@ -1,6 +1,6 @@
 steps:
   build:
-    image: woodpeckerci/plugin-docker-buildx:4.0.0
+    image: coralhl/woodpecker-buildx-plugin
     environment:
       - HTTPS_PROXY=${PROXY_ADDRESS}
       - HTTP_PROXY=${PROXY_ADDRESS}
