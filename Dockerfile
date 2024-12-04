@@ -26,7 +26,7 @@ RUN buildDeps=( \
 	); \
 	set -x \
 	&& apk add --update --virtual .build-deps "${buildDeps[@]}" \
-	&& curl -SL --connect-timeout 8 --max-time 120 --retry 128 --retry-delay 5 "ftp://ftp.infradead.org/pub/ocserv/ocserv-$OC_VERSION.tar.xz" -o ocserv.tar.xz \
+	&& curl -SL --connect-timeout 8 --max-time 120 --retry 128 --retry-delay 5 "https://www.infradead.org/ocserv/download/ocserv-$OC_VERSION.tar.xz" -o ocserv.tar.xz \
 	&& mkdir -p /usr/src/ocserv \
 	&& tar -xf ocserv.tar.xz -C /usr/src/ocserv --strip-components=1 \
 	&& rm ocserv.tar.xz* \
